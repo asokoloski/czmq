@@ -48,7 +48,7 @@
         <argument name = "self_p" type = "zframe" by_reference = "1" />
         <argument name = "dest" type = "anything" />
         <argument name = "flags" type = "integer" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "size">
@@ -119,7 +119,7 @@
         ZMQ_RADIO socket.
         Return -1 on error, 0 on success.
         <argument name = "group" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "eq">

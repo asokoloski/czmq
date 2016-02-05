@@ -20,7 +20,10 @@ class Zactor(plain.Zactor):
         Send a zmsg message to the actor, take ownership of the message
 and destroy when it has been sent.
         """
-        return plain.Zactor.send(self, msg_p)
+        ret = plain.Zactor.send(self, msg_p)
+        if ret < 0:
+            raise CZMQError("Zactor.send failed")
+        return ret
 
     def recv(self):
         """
@@ -242,19 +245,28 @@ destroying list. Caller should not modify the values of list items.
         Save full certificate (public + secret) to file for persistent storage
 This creates one public file and one secret file (filename + "_secret").
         """
-        return plain.Zcert.save(self, filename)
+        ret = plain.Zcert.save(self, filename)
+        if ret < 0:
+            raise CZMQError("Zcert.save failed")
+        return ret
 
     def save_public(self, filename):
         """
         Save public certificate only to file for persistent storage
         """
-        return plain.Zcert.save_public(self, filename)
+        ret = plain.Zcert.save_public(self, filename)
+        if ret < 0:
+            raise CZMQError("Zcert.save_public failed")
+        return ret
 
     def save_secret(self, filename):
         """
         Save secret certificate only to file for persistent storage
         """
-        return plain.Zcert.save_secret(self, filename)
+        ret = plain.Zcert.save_secret(self, filename)
+        if ret < 0:
+            raise CZMQError("Zcert.save_secret failed")
+        return ret
 
     def apply(self, zocket):
         """
@@ -436,7 +448,10 @@ chunk has a size of zero.
         """
         Write chunk to an open file descriptor
         """
-        return plain.Zchunk.write(self, handle)
+        ret = plain.Zchunk.write(self, handle)
+        if ret < 0:
+            raise CZMQError("Zchunk.write failed")
+        return ret
 
     @staticmethod
     def slurp(filename, maxsize):
@@ -675,7 +690,10 @@ by the string.
         Execute a callback for each config item in the tree; returns zero if
 successful, else -1.
         """
-        return plain.Zconfig.execute(self, handler, arg)
+        ret = plain.Zconfig.execute(self, handler, arg)
+        if ret < 0:
+            raise CZMQError("Zconfig.execute failed")
+        return ret
 
     def set_comment(self, format, *args):
         """
@@ -696,14 +714,20 @@ deleted.
         Save a config tree to a specified ZPL text file, where a filename
 "-" means dump to standard output.
         """
-        return plain.Zconfig.save(self, filename)
+        ret = plain.Zconfig.save(self, filename)
+        if ret < 0:
+            raise CZMQError("Zconfig.save failed")
+        return ret
 
     def savef(self, format, *args):
         """
         Equivalent to zconfig_save, taking a format string instead of a fixed
 filename.
         """
-        return plain.Zconfig.savef(self, format, *args)
+        ret = plain.Zconfig.savef(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zconfig.savef failed")
+        return ret
 
     def filename(self):
         """
@@ -718,7 +742,10 @@ filename.
 Returns 0 if OK, -1 if there was an error (and then does not change
 existing data).
         """
-        return plain.Zconfig.reload(self_p)
+        ret = plain.Zconfig.reload(self_p)
+        if ret < 0:
+            raise CZMQError("Zconfig.reload failed")
+        return ret
 
     @staticmethod
     def chunk_load(chunk):
@@ -1104,7 +1131,10 @@ was created, or the last zfile_restat() call made on it.
         Open file for reading
 Returns 0 if OK, -1 if not found or not accessible
         """
-        return plain.Zfile.input(self)
+        ret = plain.Zfile.input(self)
+        if ret < 0:
+            raise CZMQError("Zfile.input failed")
+        return ret
 
     def output(self):
         """
@@ -1112,7 +1142,10 @@ Returns 0 if OK, -1 if not found or not accessible
 File is created if necessary; chunks can be written to file at any
 location. Returns 0 if OK, -1 if error.
         """
-        return plain.Zfile.output(self)
+        ret = plain.Zfile.output(self)
+        if ret < 0:
+            raise CZMQError("Zfile.output failed")
+        return ret
 
     def read(self, bytes, offset):
         """
@@ -1132,7 +1165,10 @@ sets the eof property. Returns a null chunk in case of error.
         Write chunk to file at specified position
 Return 0 if OK, else -1
         """
-        return plain.Zfile.write(self, chunk, offset)
+        ret = plain.Zfile.write(self, chunk, offset)
+        if ret < 0:
+            raise CZMQError("Zfile.write failed")
+        return ret
 
     def readln(self):
         """
@@ -1206,7 +1242,10 @@ zpoller or zloop.
         Send a frame to a socket, destroy frame after sending.
 Return -1 on error, 0 on success.
         """
-        return plain.Zframe.send(self_p, dest, flags)
+        ret = plain.Zframe.send(self_p, dest, flags)
+        if ret < 0:
+            raise CZMQError("Zframe.send failed")
+        return ret
 
     def size(self):
         """
@@ -1287,7 +1326,10 @@ ZMQ_SERVER socket.
 ZMQ_RADIO socket.
 Return -1 on error, 0 on success.
         """
-        return plain.Zframe.set_group(self, group)
+        ret = plain.Zframe.set_group(self, group)
+        if ret < 0:
+            raise CZMQError("Zframe.set_group failed")
+        return ret
 
     def eq(self, other):
         """
@@ -1476,7 +1518,10 @@ strings.
 printable strings; keys may not contain '=' character. Returns 0 if OK,
 else -1 if a file error occurred.
         """
-        return plain.Zhash.save(self, filename)
+        ret = plain.Zhash.save(self, filename)
+        if ret < 0:
+            raise CZMQError("Zhash.save failed")
+        return ret
 
     def load(self, filename):
         """
@@ -1484,7 +1529,10 @@ else -1 if a file error occurred.
 already exist. Hash values must printable strings; keys may not contain
 '=' character. Returns 0 if OK, else -1 if a file was not readable.
         """
-        return plain.Zhash.load(self, filename)
+        ret = plain.Zhash.load(self, filename)
+        if ret < 0:
+            raise CZMQError("Zhash.load failed")
+        return ret
 
     def refresh(self):
         """
@@ -1493,7 +1541,10 @@ reload the file if it has been modified since, and is "stable", i.e. not
 still changing. Returns 0 if OK, -1 if there was an error reloading the 
 file.
         """
-        return plain.Zhash.refresh(self)
+        ret = plain.Zhash.refresh(self)
+        if ret < 0:
+            raise CZMQError("Zhash.refresh failed")
+        return ret
 
     def autofree(self):
         """
@@ -1507,7 +1558,10 @@ file.
 defined order. Stops if callback function returns non-zero and returns
 final return code from callback function (zero = success). Deprecated.
         """
-        return plain.Zhash.foreach(self, callback, argument)
+        ret = plain.Zhash.foreach(self, callback, argument)
+        if ret < 0:
+            raise CZMQError("Zhash.foreach failed")
+        return ret
 
     @staticmethod
     def test(verbose):
@@ -1540,7 +1594,10 @@ unpacks to an empty hash table.
 If key is already present returns -1 and leaves existing item unchanged
 Returns 0 on success.
         """
-        return plain.Zhashx.insert(self, key, item)
+        ret = plain.Zhashx.insert(self, key, item)
+        if ret < 0:
+            raise CZMQError("Zhashx.insert failed")
+        return ret
 
     def update(self, key, item):
         """
@@ -1578,7 +1635,10 @@ it on every item.
         Reindexes an item from an old key to a new key. If there was no such
 item, does nothing. Returns 0 if successful, else -1.
         """
-        return plain.Zhashx.rename(self, old_key, new_key)
+        ret = plain.Zhashx.rename(self, old_key, new_key)
+        if ret < 0:
+            raise CZMQError("Zhashx.rename failed")
+        return ret
 
     def freefn(self, key, free_fn):
         """
@@ -1655,7 +1715,10 @@ the file. If you use a null format, all comments are deleted.
 printable strings; keys may not contain '=' character. Returns 0 if OK,
 else -1 if a file error occurred.
         """
-        return plain.Zhashx.save(self, filename)
+        ret = plain.Zhashx.save(self, filename)
+        if ret < 0:
+            raise CZMQError("Zhashx.save failed")
+        return ret
 
     def load(self, filename):
         """
@@ -1663,7 +1726,10 @@ else -1 if a file error occurred.
 already exist. Hash values must printable strings; keys may not contain
 '=' character. Returns 0 if OK, else -1 if a file was not readable.
         """
-        return plain.Zhashx.load(self, filename)
+        ret = plain.Zhashx.load(self, filename)
+        if ret < 0:
+            raise CZMQError("Zhashx.load failed")
+        return ret
 
     def refresh(self):
         """
@@ -1672,7 +1738,10 @@ reload the file if it has been modified since, and is "stable", i.e. not
 still changing. Returns 0 if OK, -1 if there was an error reloading the 
 file.
         """
-        return plain.Zhashx.refresh(self)
+        ret = plain.Zhashx.refresh(self)
+        if ret < 0:
+            raise CZMQError("Zhashx.refresh failed")
+        return ret
 
     def pack(self):
         """
@@ -1903,7 +1972,10 @@ Leaves cursor pointing at the current item, or NULL if the list is empty.
 failed for some reason (out of memory). Note that if a duplicator has
 been set, this method will also duplicate the item.
         """
-        return plain.Zlist.append(self, item)
+        ret = plain.Zlist.append(self, item)
+        if ret < 0:
+            raise CZMQError("Zlist.append failed")
+        return ret
 
     def push(self, item):
         """
@@ -1911,7 +1983,10 @@ been set, this method will also duplicate the item.
 failed for some reason (out of memory). Note that if a duplicator has
 been set, this method will also duplicate the item.
         """
-        return plain.Zlist.push(self, item)
+        ret = plain.Zlist.push(self, item)
+        if ret < 0:
+            raise CZMQError("Zlist.push failed")
+        return ret
 
     def pop(self):
         """
@@ -2131,7 +2206,10 @@ if an item was deleted, -1 if not. If cursor was at item, moves cursor
 to previous item, so you can delete items while iterating forwards
 through a list.
         """
-        return plain.Zlistx.delete(self, handle)
+        ret = plain.Zlistx.delete(self, handle)
+        if ret < 0:
+            raise CZMQError("Zlistx.delete failed")
+        return ret
 
     def move_start(self, handle):
         """
@@ -2233,7 +2311,10 @@ the reactor will call the handler, passing the arg. Returns 0 if OK, -1
 if there was an error. If you register the same socket more than once,
 each instance will invoke its corresponding handler.
         """
-        return plain.Zloop.reader(self, sock, handler, arg)
+        ret = plain.Zloop.reader(self, sock, handler, arg)
+        if ret < 0:
+            raise CZMQError("Zloop.reader failed")
+        return ret
 
     def reader_end(self, sock):
         """
@@ -2257,7 +2338,10 @@ if there was an error. If you register the pollitem more than once, each
 instance will invoke its corresponding handler. A pollitem with
 socket=NULL and fd=0 means 'poll on FD zero'.
         """
-        return plain.Zloop.poller(self, item, handler, arg)
+        ret = plain.Zloop.poller(self, item, handler, arg)
+        if ret < 0:
+            raise CZMQError("Zloop.poller failed")
+        return ret
 
     def poller_end(self, item):
         """
@@ -2281,14 +2365,20 @@ times. At each expiry, will call the handler, passing the arg. To run a
 timer forever, use 0 times. Returns a timer_id that is used to cancel the
 timer in the future. Returns -1 if there was an error.
         """
-        return plain.Zloop.timer(self, delay, times, handler, arg)
+        ret = plain.Zloop.timer(self, delay, times, handler, arg)
+        if ret < 0:
+            raise CZMQError("Zloop.timer failed")
+        return ret
 
     def timer_end(self, timer_id):
         """
         Cancel a specific timer identified by a specific timer_id (as returned by
 zloop_timer).
         """
-        return plain.Zloop.timer_end(self, timer_id)
+        ret = plain.Zloop.timer_end(self, timer_id)
+        if ret < 0:
+            raise CZMQError("Zloop.timer_end failed")
+        return ret
 
     def ticket(self, handler, arg):
         """
@@ -2359,7 +2449,10 @@ context is terminated or the process is interrupted, or any event handler
 returns -1. Event handlers may register new sockets and timers, and
 cancel sockets. Returns 0 if interrupted, -1 if canceled by a handler.
         """
-        return plain.Zloop.start(self)
+        ret = plain.Zloop.start(self)
+        if ret < 0:
+            raise CZMQError("Zloop.start failed")
+        return ret
 
     @staticmethod
     def test(verbose):
@@ -2421,7 +2514,10 @@ it successfully. If the message has no frames, sends nothing but destroys
 the message anyhow. Nullifies the caller's reference to the message (as
 it is a destructor).
         """
-        return plain.Zmsg.send(self_p, dest)
+        ret = plain.Zmsg.send(self_p, dest)
+        if ret < 0:
+            raise CZMQError("Zmsg.send failed")
+        return ret
 
     @staticmethod
     def sendm(self_p, dest):
@@ -2433,7 +2529,10 @@ message part. If the message has no frames, sends nothing but destroys
 the message anyhow. Nullifies the caller's reference to the message (as
 it is a destructor).
         """
-        return plain.Zmsg.sendm(self_p, dest)
+        ret = plain.Zmsg.sendm(self_p, dest)
+        if ret < 0:
+            raise CZMQError("Zmsg.sendm failed")
+        return ret
 
     def size(self):
         """
@@ -2468,7 +2567,10 @@ Message takes ownership of frame, will destroy it when message is sent.
 Returns 0 on success, -1 on error. Deprecates zmsg_push, which did not
 nullify the caller's frame reference.
         """
-        return plain.Zmsg.prepend(self, frame_p)
+        ret = plain.Zmsg.prepend(self, frame_p)
+        if ret < 0:
+            raise CZMQError("Zmsg.prepend failed")
+        return ret
 
     def append(self, frame_p):
         """
@@ -2477,7 +2579,10 @@ Message takes ownership of frame, will destroy it when message is sent.
 Returns 0 on success. Deprecates zmsg_add, which did not nullify the
 caller's frame reference.
         """
-        return plain.Zmsg.append(self, frame_p)
+        ret = plain.Zmsg.append(self, frame_p)
+        if ret < 0:
+            raise CZMQError("Zmsg.append failed")
+        return ret
 
     def pop(self):
         """
@@ -2490,42 +2595,60 @@ caller's frame reference.
         Push block of memory to front of message, as a new frame.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.pushmem(self, src, size)
+        ret = plain.Zmsg.pushmem(self, src, size)
+        if ret < 0:
+            raise CZMQError("Zmsg.pushmem failed")
+        return ret
 
     def addmem(self, src, size):
         """
         Add block of memory to the end of the message, as a new frame.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.addmem(self, src, size)
+        ret = plain.Zmsg.addmem(self, src, size)
+        if ret < 0:
+            raise CZMQError("Zmsg.addmem failed")
+        return ret
 
     def pushstr(self, string):
         """
         Push string as new frame to front of message.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.pushstr(self, string)
+        ret = plain.Zmsg.pushstr(self, string)
+        if ret < 0:
+            raise CZMQError("Zmsg.pushstr failed")
+        return ret
 
     def addstr(self, string):
         """
         Push string as new frame to end of message.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.addstr(self, string)
+        ret = plain.Zmsg.addstr(self, string)
+        if ret < 0:
+            raise CZMQError("Zmsg.addstr failed")
+        return ret
 
     def pushstrf(self, format, *args):
         """
         Push formatted string as new frame to front of message.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.pushstrf(self, format, *args)
+        ret = plain.Zmsg.pushstrf(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zmsg.pushstrf failed")
+        return ret
 
     def addstrf(self, format, *args):
         """
         Push formatted string as new frame to end of message.
 Returns 0 on success, -1 on error.
         """
-        return plain.Zmsg.addstrf(self, format, *args)
+        ret = plain.Zmsg.addstrf(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zmsg.addstrf failed")
+        return ret
 
     def popstr(self):
         """
@@ -2540,7 +2663,10 @@ no more frames in the message, returns NULL.
 submessage, so the original is destroyed in this call. Returns 0 on
 success, -1 on error.
         """
-        return plain.Zmsg.addmsg(self, msg_p)
+        ret = plain.Zmsg.addmsg(self, msg_p)
+        if ret < 0:
+            raise CZMQError("Zmsg.addmsg failed")
+        return ret
 
     def popmsg(self):
         """
@@ -2583,7 +2709,10 @@ file is NOT guaranteed to be portable between operating systems, not
 versions of CZMQ. The file format is at present undocumented and liable
 to arbitrary change.
         """
-        return plain.Zmsg.save(self, file)
+        ret = plain.Zmsg.save(self, file)
+        if ret < 0:
+            raise CZMQError("Zmsg.save failed")
+        return ret
 
     def encode(self, buffer):
         """
@@ -2652,14 +2781,20 @@ zactor_t instance, a libzmq socket (void *), or a file handle.
         Add a reader to be polled. Returns 0 if OK, -1 on failure. The reader may
 be a libzmq void * socket, a zsock_t instance, or a zactor_t instance.
         """
-        return plain.Zpoller.add(self, reader)
+        ret = plain.Zpoller.add(self, reader)
+        if ret < 0:
+            raise CZMQError("Zpoller.add failed")
+        return ret
 
     def remove(self, reader):
         """
         Remove a reader from the poller; returns 0 if OK, -1 on failure. The reader
 must have been passed during construction, or in an zpoller_add () call.
         """
-        return plain.Zpoller.remove(self, reader)
+        ret = plain.Zpoller.remove(self, reader)
+        if ret < 0:
+            raise CZMQError("Zpoller.remove failed")
+        return ret
 
     def set_nonstop(self, nonstop):
         """
@@ -3026,7 +3161,10 @@ ephemeral ports, a port may be reused by different services without
 clients being aware. Protocols that run on ephemeral ports should take
 this into account.
         """
-        return plain.Zsock.bind(self, format, *args)
+        ret = plain.Zsock.bind(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.bind failed")
+        return ret
 
     def endpoint(self):
         """
@@ -3040,14 +3178,20 @@ this into account.
 Returns 0 if OK, -1 if the endpoint was invalid or the function
 isn't supported.
         """
-        return plain.Zsock.unbind(self, format, *args)
+        ret = plain.Zsock.unbind(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.unbind failed")
+        return ret
 
     def connect(self, format, *args):
         """
         Connect a socket to a formatted endpoint
 Returns 0 if OK, -1 if the endpoint was invalid.
         """
-        return plain.Zsock.connect(self, format, *args)
+        ret = plain.Zsock.connect(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.connect failed")
+        return ret
 
     def disconnect(self, format, *args):
         """
@@ -3055,7 +3199,10 @@ Returns 0 if OK, -1 if the endpoint was invalid.
 Returns 0 if OK, -1 if the endpoint was invalid or the function
 isn't supported.
         """
-        return plain.Zsock.disconnect(self, format, *args)
+        ret = plain.Zsock.disconnect(self, format, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.disconnect failed")
+        return ret
 
     def attach(self, endpoints, serverish):
         """
@@ -3066,7 +3213,10 @@ endpoints were valid, or -1 if there was a syntax error. If the endpoint
 does not start with '@' or '>', the serverish argument defines whether
 it is used to bind (serverish = true) or connect (serverish = false).
         """
-        return plain.Zsock.attach(self, endpoints, serverish)
+        ret = plain.Zsock.attach(self, endpoints, serverish)
+        if ret < 0:
+            raise CZMQError("Zsock.attach failed")
+        return ret
 
     def type_str(self):
         """
@@ -3103,7 +3253,10 @@ have data in a zchunk or zframe. Does not change or take ownership of
 any arguments. Returns 0 if successful, -1 if sending failed for any
 reason.
         """
-        return plain.Zsock.send(self, picture, *args)
+        ret = plain.Zsock.send(self, picture, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.send failed")
+        return ret
 
     def vsend(self, picture, argptr):
         """
@@ -3111,7 +3264,10 @@ reason.
 version of zsock_send (), so please consult its documentation for the
 details.
         """
-        return plain.Zsock.vsend(self, picture, argptr)
+        ret = plain.Zsock.vsend(self, picture, argptr)
+        if ret < 0:
+            raise CZMQError("Zsock.vsend failed")
+        return ret
 
     def recv(self, picture, *args):
         """
@@ -3142,7 +3298,10 @@ If an argument pointer is NULL, does not store any value (skips it).
 An 'n' picture matches an empty frame; if the message does not match,
 the method will return -1.
         """
-        return plain.Zsock.recv(self, picture, *args)
+        ret = plain.Zsock.recv(self, picture, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.recv failed")
+        return ret
 
     def vrecv(self, picture, argptr):
         """
@@ -3150,7 +3309,10 @@ the method will return -1.
 va_list version of zsock_recv (), so please consult its documentation
 for the details.
         """
-        return plain.Zsock.vrecv(self, picture, argptr)
+        ret = plain.Zsock.vrecv(self, picture, argptr)
+        if ret < 0:
+            raise CZMQError("Zsock.vrecv failed")
+        return ret
 
     def bsend(self, picture, *args):
         """
@@ -3176,7 +3338,10 @@ type of each argument. Supports these argument types:
 Does not change or take ownership of any arguments. Returns 0 if
 successful, -1 if sending failed for any reason.
         """
-        return plain.Zsock.bsend(self, picture, *args)
+        ret = plain.Zsock.bsend(self, picture, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.bsend failed")
+        return ret
 
     def brecv(self, picture, *args):
         """
@@ -3192,7 +3357,10 @@ destroy them when finished with them. The supplied pointers do not need
 to be initialized. Returns 0 if successful, or -1 if it failed to read
 a message.
         """
-        return plain.Zsock.brecv(self, picture, *args)
+        ret = plain.Zsock.brecv(self, picture, *args)
+        if ret < 0:
+            raise CZMQError("Zsock.brecv failed")
+        return ret
 
     def routing_id(self):
         """
@@ -3224,7 +3392,10 @@ to be distinguishable from "normal" messages. Accepts a zsock_t or a
 zactor_t argument, and returns 0 if successful, -1 if the signal could
 not be sent. Takes a polymorphic socket reference.
         """
-        return plain.Zsock.signal(self, status)
+        ret = plain.Zsock.signal(self, status)
+        if ret < 0:
+            raise CZMQError("Zsock.signal failed")
+        return ret
 
     def wait(self):
         """
@@ -3233,7 +3404,10 @@ pairs. Blocks until the signal is received. Returns -1 on error, 0 or
 greater on success. Accepts a zsock_t or a zactor_t as argument.
 Takes a polymorphic socket reference.
         """
-        return plain.Zsock.wait(self)
+        ret = plain.Zsock.wait(self)
+        if ret < 0:
+            raise CZMQError("Zsock.wait failed")
+        return ret
 
     def flush(self):
         """
@@ -3248,14 +3422,20 @@ message types.
         Join a group for the RADIO-DISH pattern. Call only on ZMQ_DISH.
 Returns 0 if OK, -1 if failed.
         """
-        return plain.Zsock.join(self, group)
+        ret = plain.Zsock.join(self, group)
+        if ret < 0:
+            raise CZMQError("Zsock.join failed")
+        return ret
 
     def leave(self, group):
         """
         Leave a group for the RADIO-DISH pattern. Call only on ZMQ_DISH.
 Returns 0 if OK, -1 if failed.
         """
-        return plain.Zsock.leave(self, group)
+        ret = plain.Zsock.leave(self, group)
+        if ret < 0:
+            raise CZMQError("Zsock.leave failed")
+        return ret
 
     @staticmethod
     def is_(self):
@@ -3915,7 +4095,10 @@ trailing null byte; to read this you can use zstr_recv, or a similar
 method that adds a null terminator on the received string. String
 may be NULL, which is sent as "".
         """
-        return plain.Zstr.send(dest, string)
+        ret = plain.Zstr.send(dest, string)
+        if ret < 0:
+            raise CZMQError("Zstr.send failed")
+        return ret
 
     @staticmethod
     def sendm(dest, string):
@@ -3923,7 +4106,10 @@ may be NULL, which is sent as "".
         Send a C string to a socket, as zstr_send(), with a MORE flag, so that
 you can send further strings in the same multi-part message.
         """
-        return plain.Zstr.sendm(dest, string)
+        ret = plain.Zstr.sendm(dest, string)
+        if ret < 0:
+            raise CZMQError("Zstr.sendm failed")
+        return ret
 
     @staticmethod
     def sendf(dest, format, *args):
@@ -3932,7 +4118,10 @@ you can send further strings in the same multi-part message.
 user-supplied strings in the format (they may contain '%' which
 will create security holes).
         """
-        return plain.Zstr.sendf(dest, format, *args)
+        ret = plain.Zstr.sendf(dest, format, *args)
+        if ret < 0:
+            raise CZMQError("Zstr.sendf failed")
+        return ret
 
     @staticmethod
     def sendfm(dest, format, *args):
@@ -3941,7 +4130,10 @@ will create security holes).
 MORE flag, so that you can send further strings in the same multi-part
 message.
         """
-        return plain.Zstr.sendfm(dest, format, *args)
+        ret = plain.Zstr.sendfm(dest, format, *args)
+        if ret < 0:
+            raise CZMQError("Zstr.sendfm failed")
+        return ret
 
     @staticmethod
     def sendx(dest, string, *args):
@@ -3949,7 +4141,10 @@ message.
         Send a series of strings (until NULL) as multipart data
 Returns 0 if the strings could be sent OK, or -1 on error.
         """
-        return plain.Zstr.sendx(dest, string, *args)
+        ret = plain.Zstr.sendx(dest, string, *args)
+        if ret < 0:
+            raise CZMQError("Zstr.sendx failed")
+        return ret
 
     @staticmethod
     def str(source):
@@ -3989,7 +4184,10 @@ class Ztrie(plain.Ztrie):
 if the route already exists, otherwise 0. This method takes ownership of
 the provided data if a destroy_data_fn is provided.
         """
-        return plain.Ztrie.insert_route(self, path, data, destroy_data_fn)
+        ret = plain.Ztrie.insert_route(self, path, data, destroy_data_fn)
+        if ret < 0:
+            raise CZMQError("Ztrie.insert_route failed")
+        return ret
 
     def remove_route(self, path):
         """
@@ -3997,7 +4195,10 @@ the provided data if a destroy_data_fn is provided.
 route does not exists, otherwise 0.
 the start of the list call zlist_first (). Advances the cursor.
         """
-        return plain.Ztrie.remove_route(self, path)
+        ret = plain.Ztrie.remove_route(self, path)
+        if ret < 0:
+            raise CZMQError("Ztrie.remove_route failed")
+        return ret
 
     def matches(self, path):
         """
@@ -4074,7 +4275,10 @@ class Zuuid(plain.Zuuid):
         Set UUID to new supplied string value skipping '-' and '{' '}'
 optional delimiters. Return 0 if OK, else returns -1.
         """
-        return plain.Zuuid.set_str(self, source)
+        ret = plain.Zuuid.set_str(self, source)
+        if ret < 0:
+            raise CZMQError("Zuuid.set_str failed")
+        return ret
 
     def data(self):
         """

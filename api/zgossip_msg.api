@@ -39,13 +39,13 @@
     Receive a zgossip_msg from the socket. Returns 0 if OK, -1 if
     there was an error. Blocks if there is no message waiting.
     <argument name = "input" type = "zsock" />
-    <return type = "integer" />
+    <return type = "status" />
 </method>
 
 <method name = "send">
     Send the zgossip_msg to the output socket, does not destroy it
     <argument name = "output" type = "zsock" />
-    <return type = "integer" />
+    <return type = "status" />
 </method>
 
 <method name = "print">

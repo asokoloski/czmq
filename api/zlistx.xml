@@ -25,7 +25,7 @@
         Compare two items, for sorting
         <argument name = "item1" type = "anything" mutable = "0" />
         <argument name = "item2" type = "anything" mutable = "0" />
-        <return type = "integer" />
+        <return type = "status" />
     </callback_type>
 
     <constructor>
@@ -146,7 +146,7 @@
         to previous item, so you can delete items while iterating forwards
         through a list.
         <argument name = "handle" type = "anything" mutable = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "move_start">

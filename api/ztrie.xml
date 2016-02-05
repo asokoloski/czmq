@@ -31,7 +31,7 @@
         <argument name = "path" type = "string" />
         <argument name = "data" type = "anything" />
         <argument name = "destroy_data_fn" type = "ztrie_destroy_data_fn" callback = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "remove route">
@@ -39,7 +39,7 @@
         route does not exists, otherwise 0.
         the start of the list call zlist_first (). Advances the cursor.
         <argument name = "path" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "matches">

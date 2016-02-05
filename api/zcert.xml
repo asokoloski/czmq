@@ -77,19 +77,19 @@
         Save full certificate (public + secret) to file for persistent storage
         This creates one public file and one secret file (filename + "_secret").
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "save public">
         Save public certificate only to file for persistent storage
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "save secret">
         Save secret certificate only to file for persistent storage
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "apply">

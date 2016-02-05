@@ -99,7 +99,7 @@
     <method name = "write">
         Write chunk to an open file descriptor
         <argument name = "handle" type = "FILE" mutable = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "slurp" singleton = "1">

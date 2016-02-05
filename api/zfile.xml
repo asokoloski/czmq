@@ -99,14 +99,14 @@
     <method name = "input">
         Open file for reading
         Returns 0 if OK, -1 if not found or not accessible
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "output">
         Open file for writing, creating directory if needed
         File is created if necessary; chunks can be written to file at any
         location. Returns 0 if OK, -1 if error.
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "read">
@@ -127,7 +127,7 @@
         Return 0 if OK, else -1
         <argument name = "chunk" type = "zchunk" />
         <argument name = "offset" type = "file_size" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "readln">

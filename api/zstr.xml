@@ -38,7 +38,7 @@
         may be NULL, which is sent as "".
         <argument name = "dest" type = "anything" />
         <argument name = "string" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "sendm" singleton = "1">
@@ -46,7 +46,7 @@
         you can send further strings in the same multi-part message.
         <argument name = "dest" type = "anything" />
         <argument name = "string" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "sendf" singleton = "1">
@@ -55,7 +55,7 @@
         will create security holes).
         <argument name = "dest" type = "anything" />
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method  name = "sendfm" singleton = "1">
@@ -64,7 +64,7 @@
         message.
         <argument name = "dest" type = "anything" />
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "sendx" singleton = "1">
@@ -72,7 +72,7 @@
         Returns 0 if the strings could be sent OK, or -1 on error.
         <argument name = "dest" type = "anything" />
         <argument name = "string" type = "string" variadic = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "str" singleton = "1" state = "draft" >

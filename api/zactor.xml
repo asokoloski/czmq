@@ -30,7 +30,7 @@
         Send a zmsg message to the actor, take ownership of the message
         and destroy when it has been sent.
         <argument name = "msg_p" type = "zmsg" by_reference = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "recv">

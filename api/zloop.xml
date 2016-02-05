@@ -50,7 +50,7 @@
         <argument name = "sock" type = "zsock" />
         <argument name = "handler" type = "zloop_reader_fn" callback = "1" />
         <argument name = "arg" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "reader end">
@@ -74,7 +74,7 @@
         <argument name = "item" type = "zmq_pollitem" />
         <argument name = "handler" type = "zloop_fn" callback = "1" />
         <argument name = "arg" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "poller end">
@@ -99,14 +99,14 @@
         <argument name = "times" type = "size" />
         <argument name = "handler" type = "zloop_timer_fn" callback = "1" />
         <argument name = "arg" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "timer end">
         Cancel a specific timer identified by a specific timer_id (as returned by
         zloop_timer).
         <argument name = "timer id" type = "integer" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "ticket">
@@ -171,6 +171,6 @@
         context is terminated or the process is interrupted, or any event handler
         returns -1. Event handlers may register new sockets and timers, and
         cancel sockets. Returns 0 if interrupted, -1 if canceled by a handler.
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 </class>

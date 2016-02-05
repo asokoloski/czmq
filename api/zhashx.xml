@@ -53,7 +53,7 @@
         Returns 0 on success.
         <argument name = "key" type = "anything" mutable = "0"/>
         <argument name = "item" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "update">
@@ -89,7 +89,7 @@
         item, does nothing. Returns 0 if successful, else -1.
         <argument name = "old key" type = "anything" mutable = "0"/>
         <argument name = "new key" type = "anything" mutable = "0"/>
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "freefn">
@@ -160,7 +160,7 @@
         printable strings; keys may not contain '=' character. Returns 0 if OK,
         else -1 if a file error occurred.
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>     
 
     <method name = "load">
@@ -168,7 +168,7 @@
         already exist. Hash values must printable strings; keys may not contain
         '=' character. Returns 0 if OK, else -1 if a file was not readable.
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "refresh">
@@ -176,7 +176,7 @@
         reload the file if it has been modified since, and is "stable", i.e. not
         still changing. Returns 0 if OK, -1 if there was an error reloading the 
         file.
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "pack">

@@ -129,7 +129,7 @@
         clients being aware. Protocols that run on ephemeral ports should take
         this into account.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "endpoint">
@@ -142,14 +142,14 @@
         Returns 0 if OK, -1 if the endpoint was invalid or the function
         isn't supported.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "connect">
         Connect a socket to a formatted endpoint
         Returns 0 if OK, -1 if the endpoint was invalid.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "disconnect">
@@ -157,7 +157,7 @@
         Returns 0 if OK, -1 if the endpoint was invalid or the function
         isn't supported.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "attach">
@@ -169,7 +169,7 @@
         it is used to bind (serverish = true) or connect (serverish = false).
         <argument name = "endpoints" type = "string" />
         <argument name = "serverish" type = "boolean" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "type str">
@@ -205,7 +205,7 @@
         any arguments. Returns 0 if successful, -1 if sending failed for any
         reason.
         <argument name = "picture" type = "string" variadic = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "vsend" polymorphic = "1">
@@ -214,7 +214,7 @@
         details.
         <argument name = "picture" type = "string" />
         <argument name = "argptr" type = "va_list" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "recv" polymorphic = "1">
@@ -245,7 +245,7 @@
         An 'n' picture matches an empty frame; if the message does not match,
         the method will return -1.
         <argument name = "picture" type = "string" variadic = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "vrecv" polymorphic = "1">
@@ -254,7 +254,7 @@
         for the details.
         <argument name = "picture" type = "string" />
         <argument name = "argptr" type = "va_list" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "bsend" polymorphic = "1">
@@ -280,7 +280,7 @@
         Does not change or take ownership of any arguments. Returns 0 if
         successful, -1 if sending failed for any reason.
         <argument name = "picture" type = "string" variadic = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "brecv" polymorphic = "1">
@@ -296,7 +296,7 @@
         to be initialized. Returns 0 if successful, or -1 if it failed to read
         a message.
         <argument name = "picture" type = "string" variadic = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "routing id" state = "draft">
@@ -324,7 +324,7 @@
         zactor_t argument, and returns 0 if successful, -1 if the signal could
         not be sent. Takes a polymorphic socket reference.
         <argument name = "status" type = "byte" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "wait" polymorphic = "1">
@@ -332,7 +332,7 @@
         pairs. Blocks until the signal is received. Returns -1 on error, 0 or
         greater on success. Accepts a zsock_t or a zactor_t as argument.
         Takes a polymorphic socket reference.
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "flush" polymorphic = "1">
@@ -345,14 +345,14 @@
         Join a group for the RADIO-DISH pattern. Call only on ZMQ_DISH.
         Returns 0 if OK, -1 if failed.
         <argument name = "group" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "leave" state = "draft"  polymorphic = "1">
         Leave a group for the RADIO-DISH pattern. Call only on ZMQ_DISH.
         Returns 0 if OK, -1 if failed.
         <argument name = "group" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "is" singleton = "1">

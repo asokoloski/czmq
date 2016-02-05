@@ -14,7 +14,7 @@
         <argument name = "self" type = "zconfig" />
         <argument name = "arg" type = "anything" />
         <argument name = "level" type = "integer" />
-        <return type = "integer" />
+        <return type = "status" />
     </callback_type>
 
     <constructor>
@@ -97,7 +97,7 @@
         successful, else -1.
         <argument name = "handler" type = "zconfig_fct" callback = "1" />
         <argument name = "arg" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "set comment">
@@ -123,7 +123,7 @@
         Save a config tree to a specified ZPL text file, where a filename
         "-" means dump to standard output.
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <constructor name = "loadf">
@@ -136,7 +136,7 @@
         Equivalent to zconfig_save, taking a format string instead of a fixed
         filename.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "filename">
@@ -149,7 +149,7 @@
         Returns 0 if OK, -1 if there was an error (and then does not change
         existing data).
         <argument name = "self_p" type = "zconfig" by_reference = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "chunk load" singleton = "1" >

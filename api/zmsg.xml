@@ -33,7 +33,7 @@
         it is a destructor).
         <argument name = "self_p" type = "zmsg" by_reference = "1" />
         <argument name = "dest" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "sendm" singleton = "1">
@@ -45,7 +45,7 @@
         it is a destructor).
         <argument name = "self_p" type = "zmsg" by_reference = "1" />
         <argument name = "dest" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "size">
@@ -76,7 +76,7 @@
         Returns 0 on success, -1 on error. Deprecates zmsg_push, which did not
         nullify the caller's frame reference.
         <argument name = "frame_p" type = "zframe" by_reference = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "append">
@@ -85,7 +85,7 @@
         Returns 0 on success. Deprecates zmsg_add, which did not nullify the
         caller's frame reference.
         <argument name = "frame_p" type = "zframe" by_reference = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "pop">
@@ -98,7 +98,7 @@
         Returns 0 on success, -1 on error.
         <argument name = "src" type = "anything" mutable = "0" />
         <argument name = "size" type = "size" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "addmem">
@@ -106,35 +106,35 @@
         Returns 0 on success, -1 on error.
         <argument name = "src" type = "anything" mutable = "0" />
         <argument name = "size" type = "size" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "pushstr">
         Push string as new frame to front of message.
         Returns 0 on success, -1 on error.
         <argument name = "string" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "addstr">
         Push string as new frame to end of message.
         Returns 0 on success, -1 on error.
         <argument name = "string" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "pushstrf">
         Push formatted string as new frame to front of message.
         Returns 0 on success, -1 on error.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "addstrf">
         Push formatted string as new frame to end of message.
         Returns 0 on success, -1 on error.
         <argument name = "format" type = "format" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "popstr">
@@ -148,7 +148,7 @@
         submessage, so the original is destroyed in this call. Returns 0 on
         success, -1 on error.
         <argument name = "msg_p" type = "zmsg" by_reference = "1" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "popmsg">
@@ -186,7 +186,7 @@
         versions of CZMQ. The file format is at present undocumented and liable
         to arbitrary change.
         <argument name = "file" type = "FILE" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <constructor name = "load">

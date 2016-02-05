@@ -158,7 +158,7 @@
         printable strings; keys may not contain '=' character. Returns 0 if OK,
         else -1 if a file error occurred.
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "load">
@@ -166,7 +166,7 @@
         already exist. Hash values must printable strings; keys may not contain
         '=' character. Returns 0 if OK, else -1 if a file was not readable.
         <argument name = "filename" type = "string" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "refresh">
@@ -174,7 +174,7 @@
         reload the file if it has been modified since, and is "stable", i.e. not
         still changing. Returns 0 if OK, -1 if there was an error reloading the 
         file.
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "autofree">
@@ -186,7 +186,7 @@
         <argument name = "key" type = "string" />
         <argument name = "item" type = "anything" />
         <argument name = "argument" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </callback_type>
 
     <method name = "foreach" state = "legacy">
@@ -195,6 +195,6 @@
         final return code from callback function (zero = success). Deprecated.
         <argument name = "callback" type = "zhash_foreach_fn" callback = "1" />
         <argument name = "argument" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 </class>

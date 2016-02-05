@@ -25,14 +25,14 @@
         Add a reader to be polled. Returns 0 if OK, -1 on failure. The reader may
         be a libzmq void * socket, a zsock_t instance, or a zactor_t instance.
         <argument name = "reader" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "remove">
         Remove a reader from the poller; returns 0 if OK, -1 on failure. The reader
         must have been passed during construction, or in an zpoller_add () call.
         <argument name = "reader" type = "anything" />
-        <return type = "integer" />
+        <return type = "status" />
     </method>
 
     <method name = "set nonstop" state = "draft" >
