@@ -503,7 +503,7 @@ as a string, if that's what it was prior to encoding.
         """
         return lib.zarmour_set_line_length(self._as_parameter_, line_length)
 
-    def print(self):
+    def print_(self):
         """
         Print properties of object
         """
@@ -713,7 +713,7 @@ heap memory, returns NULL.
         """
         return lib.zcert_eq(self._as_parameter_, compare)
 
-    def print(self):
+    def print_(self):
         """
         Print certificate contents to stdout
         """
@@ -819,7 +819,7 @@ directly on the certificate. Takes ownership of zcert_t object.
         """
         return lib.zcertstore_insert(self._as_parameter_, byref(zcert_p.from_param(cert_p)))
 
-    def print(self):
+    def print_(self):
         """
         Print list of certificates in store to logging facility
         """
@@ -1088,7 +1088,7 @@ Caller must free string when finished with it.
         """
         return lib.zchunk_fprint(self._as_parameter_, coerce_py_file(file))
 
-    def print(self):
+    def print_(self):
         """
         Dump message to stderr, for debugging and tracing.
 See zchunk_fprint for details
@@ -1487,7 +1487,7 @@ file has changed in since the tree was loaded.
         """
         return lib.zconfig_fprint(self._as_parameter_, coerce_py_file(file))
 
-    def print(self):
+    def print_(self):
         """
         Print properties of object
         """
@@ -1753,7 +1753,7 @@ of every file in the tree. The cache is saved between runs in .cache.
         """
         return lib.zdir_fprint(self._as_parameter_, coerce_py_file(file), indent)
 
-    def print(self, indent):
+    def print_(self, indent):
         """
         Print contents of directory to stdout
         """
@@ -2411,7 +2411,7 @@ If either frame is NULL, equality is always false.
         """
         return lib.zframe_reset(self._as_parameter_, data, size)
 
-    def print(self, prefix):
+    def print_(self, prefix):
         """
         Send message to zsys log sink (may be stdout, or system facility as
 configured by zsys_set_logstream). Prefix shows before frame, if not null.
@@ -3210,7 +3210,7 @@ class Ziflist(object):
         """
         return lib.ziflist_netmask(self._as_parameter_)
 
-    def print(self):
+    def print_(self):
         """
         Return the list of interfaces.
         """
@@ -4363,7 +4363,7 @@ object. If message is null, or memory was exhausted, returns null.
         """
         return Zmsg(lib.zmsg_dup(self._as_parameter_), True)
 
-    def print(self):
+    def print_(self):
         """
         Send message to zsys log sink (may be stdout, or system facility as
 configured by zsys_set_logstream).
@@ -6358,7 +6358,7 @@ or no asterisk match, returns NULL.
         """
         return lib.ztrie_hit_asterisk_match(self._as_parameter_)
 
-    def print(self):
+    def print_(self):
         """
         Print the trie
         """
